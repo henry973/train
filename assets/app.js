@@ -24,5 +24,44 @@ var config = {
     console.log(trainTime);
     console.log(trainFreq);
 
-  });
+  
+    var newTrain = {
+        name: trainName,
+        destination: desName,
+        time: trainTime,
+        frequency: trainFreq,
+      };
+      database.ref().push(newTrain);
+   
+   
+   console.log(trainName.name);
+   console.log(desName.destination);
+   console.log(trainTime.time);
+   console.log(trainFreq.frequency);
+   
+   
+
+   $("#train").val("");
+   $("#destination").val("");
+   $("#firstTrain").val("");
+   $("#frequency").val("");
+   });
+   database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+   
+    console.log(childSnapshot.val());
+   
+    var trainName = childSnapshot.val().name;
+    var desName = childSnapshot.val().destination;
+    var trainTime = childSnapshot.val().time;
+    var trainFreq = childSnapshot.val().frequency;
+   
+    
+    console.log(trainName);
+    console.log(desName);
+    console.log(trainTime);
+    console.log(trainFreq);
+   
+ 
+}); 
+ 
     
